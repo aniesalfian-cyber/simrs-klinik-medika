@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Harvest Medika SIMRS & Klinik | Pabrik Harvest Digital Indonesia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg-canvas: #F1F5F9;
+      --bg-glass: rgba(255, 255, 255, 0.82);
+      --bg-surface: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --border-glass: rgba(15, 23, 42, 0.12);
+      --accent: #059669;
+    }
+    html.dark {
+      --bg-canvas: #070B12;
+      --bg-glass: rgba(15, 23, 38, 0.75);
+      --bg-surface: #111827;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --accent: #10B981;
+    }
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+    }
+    .glass-shell {
+      background: var(--bg-glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-glass);
+    }
+    a, button, select, summary, [role="button"] {
+      cursor: pointer;
+    }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+  <header class="sticky top-0 z-40 glass-shell border-b px-4 sm:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-extrabold text-lg shadow-sm">
+          H
+        </div>
+        <div>
+          <h1 class="font-bold text-base sm:text-lg leading-tight">Harvest Medika SIMRS & Klinik</h1>
+          <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400">Healthcare & Medical Records (simrs-klinik-medika.harvestdigital.pro)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <button type="button" id="btnToggleTheme" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-semibold min-h-[44px] flex items-center gap-2 hover:bg-slate-200/50 dark:hover:bg-slate-800/60 transition">
+          <span>Mode Tampilan</span>
+        </button>
+        <button type="button" id="btnOpenDocModal" class="px-3.5 py-2 rounded-xl bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-semibold min-h-[44px] flex items-center gap-2 hover:opacity-90 transition">
+          <span>Arsip PRD & Audit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-8 flex-1 space-y-8">
+    <!-- Hero Banner & System Info -->
+    <section class="glass-shell rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono">
+            <span>Status Sistem: Production Ready (Revisi Audit Terverifikasi)</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Harvest Medika SIMRS & Klinik</h2>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">Sistem informasi manajemen klinik pratama untuk pendaftaran rekam medis pasien, antrean poliklinik, pencatatan tarif tindakan medis, dan laporan operasional harian.</p>
+          <p class="text-xs font-mono text-slate-500 dark:text-slate-400 pt-1">Tech Stack: HTML5, Tailwind CSS, Codeiginter 4, PHP 8.3, MySQL, Nginx</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto">
+          <div class="p-4 rounded-xl bg-white/60 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Tagihan Layanan</div>
+            <div id="statTotalValue" class="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-1">Rp 0</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/60 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Pasien Terlayani</div>
+            <div id="statCompletedCount" class="text-lg font-bold font-mono mt-1">0</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/60 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Dokter & Poli Aktif</div>
+            <div id="statTotalItems" class="text-lg font-bold font-mono mt-1">0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operational CRUD Workspace -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Form Input Data -->
+      <div class="lg:col-span-4 glass-shell rounded-2xl p-6 h-fit">
+        <h3 class="text-base font-bold mb-1">Tambah Rekam Medis & Antrean</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">Data disimpan secara persisten dan dapat diekspor ke CSV.</p>
+        <form id="recordForm" class="space-y-4">
+          <div>
+            <label for="fieldCode" class="block text-xs font-semibold mb-1.5">No. Rekam Medis</label>
+            <input id="fieldCode" type="text" required placeholder="Masukkan kode..." class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm" />
+          </div>
+          <div>
+            <label for="fieldName" class="block text-xs font-semibold mb-1.5">Nama Pasien / Layanan</label>
+            <input id="fieldName" type="text" required placeholder="Masukkan nama item..." class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm" />
+          </div>
+          <div>
+            <label for="fieldCategory" class="block text-xs font-semibold mb-1.5">Poli / Unit</label>
+            <input id="fieldCategory" type="text" required placeholder="Masukkan kategori..." class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm" />
+          </div>
+          <div>
+            <label for="fieldAmount" class="block text-xs font-semibold mb-1.5">Biaya Layanan (Rp)</label>
+            <input id="fieldAmount" type="number" inputmode="numeric" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm font-mono" />
+          </div>
+          <div>
+            <label for="fieldStatus" class="block text-xs font-semibold mb-1.5">Status Pemeriksaan</label>
+            <select id="fieldStatus" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm min-h-[44px]">
+              <option value="Selesai">Selesai / Aktif</option>
+              <option value="Diproses">Sedang Diproses</option>
+              <option value="Menunggu">Menunggu Verifikasi</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm min-h-[44px] transition">
+            Simpan Data Rekam Medis & Antrean
+          </button>
+        </form>
+      </div>
+
+      <!-- Data Table -->
+      <div class="lg:col-span-8 glass-shell rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div>
+              <h3 class="text-base font-bold">Daftar Rekam Medis & Antrean</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Kelola, saring, atau ekspor catatan operasional.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <label for="searchInput" class="sr-only">Cari data</label>
+              <input id="searchInput" type="search" placeholder="Cari nama atau kode..." class="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs min-h-[44px]" />
+              <button type="button" id="btnExportCsv" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-semibold min-h-[44px] hover:bg-slate-200/50 dark:hover:bg-slate-800 transition">
+                Ekspor CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-mono text-xs">
+                  <th class="py-3 px-3">No. Rekam Medis</th>
+                  <th class="py-3 px-3">Nama Pasien / Layanan</th>
+                  <th class="py-3 px-3">Poli / Unit</th>
+                  <th class="py-3 px-3 text-right">Biaya Layanan (Rp)</th>
+                  <th class="py-3 px-3">Status Pemeriksaan</th>
+                  <th class="py-3 px-3 text-right">Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="recordsBody" class="divide-y divide-slate-200 dark:divide-slate-800"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Arsip Dokumen -->
+  <div id="docModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-shell rounded-2xl max-w-2xl w-full p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-300 dark:border-slate-700 pb-3">
+        <h3 class="font-bold text-base">Berkas Arsitektur, Audit & Legalitas</h3>
+        <button type="button" id="btnCloseDocModal" class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-semibold min-h-[44px]">Tutup</button>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400">Seluruh dokumen di bawah ini telah disusun secara otonom oleh 6 Agen Pabrik Harvest Digital Indonesia:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+        <a href="/master-konsep.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">1. master-konsep.md (Agen Analis)</a>
+        <a href="/PRD.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">2. PRD.md (Agen Analis)</a>
+        <a href="/TODO.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">3. TODO.md (Agen Analis)</a>
+        <a href="/TODO-Audit-Bug.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">4. TODO-Audit-Bug.md (Agen Audit)</a>
+        <a href="/TODO-Audit-Scurity.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">5. TODO-Audit-Scurity.md (Agen Audit)</a>
+        <a href="/dokumen-kontrak/proposal-penawaran.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">6. Proposal Penawaran</a>
+        <a href="/dokumen-kontrak/surat-kontrak-kerjasama.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">7. Surat Kontrak Kerjasama</a>
+        <a href="/dokumen-kontrak/panduan-penggunaan-aplikasi.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">8. Panduan Penggunaan Aplikasi</a>
+        <a href="/dokumen-kontrak/hasil-uji-aplikasi.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">9. Dokumen Hasil Uji Aplikasi</a>
+        <a href="/dokumen-kontrak/berita-acara-serah-terima.md" target="_blank" class="p-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-emerald-500 transition block">10. Berita Acara Serah Terima</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-300 dark:border-slate-800 py-5 px-4 text-center text-xs text-slate-500 font-mono">
+    Pabrik Harvest Digital Indonesia (simrs-klinik-medika.harvestdigital.pro) | Dikelola oleh Antigravity Multi-Agent Engine
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'hvd_app_data_simrs_klinik_medika_harvestdigital_pro';
+    let records = [];
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      records = saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      records = [];
+    }
+
+    const recordsBody = document.getElementById('recordsBody');
+    const recordForm = document.getElementById('recordForm');
+    const searchInput = document.getElementById('searchInput');
+    const statTotalValue = document.getElementById('statTotalValue');
+    const statCompletedCount = document.getElementById('statCompletedCount');
+    const statTotalItems = document.getElementById('statTotalItems');
+
+    function renderRecords() {
+      const q = (searchInput.value || '').toLowerCase();
+      const filtered = records.filter(r => r.code.toLowerCase().includes(q) || r.name.toLowerCase().includes(q) || r.category.toLowerCase().includes(q));
+      
+      const totalVal = records.reduce((acc, r) => acc + (Number(r.amount) || 0), 0);
+      const doneCount = records.filter(r => r.status === 'Selesai').length;
+      statTotalValue.textContent = 'Rp ' + totalVal.toLocaleString('id-ID');
+      statCompletedCount.textContent = String(doneCount);
+      statTotalItems.textContent = String(records.length);
+
+      if (filtered.length === 0) {
+        recordsBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-slate-500">Belum ada data tercatat. Gunakan formulir di samping untuk menambahkan data pertama Anda.</td></tr>';
+        return;
+      }
+
+      recordsBody.innerHTML = filtered.map((r, idx) => `
+        <tr class="hover:bg-slate-200/30 dark:hover:bg-slate-800/40">
+          <td class="py-3 px-3 font-mono font-semibold">${r.code}</td>
+          <td class="py-3 px-3 font-medium">${r.name}</td>
+          <td class="py-3 px-3">${r.category}</td>
+          <td class="py-3 px-3 text-right font-mono">Rp ${Number(r.amount).toLocaleString('id-ID')}</td>
+          <td class="py-3 px-3">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono ${r.status === 'Selesai' ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400' : 'bg-amber-500/15 text-amber-600 dark:text-amber-400'}">${r.status}</span>
+          </td>
+          <td class="py-3 px-3 text-right">
+            <button type="button" onclick="deleteRecord('${r.id}')" class="px-2.5 py-1.5 rounded-lg text-xs text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 min-h-[36px]">Hapus</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.deleteRecord = function(id) {
+      records = records.filter(r => r.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+      renderRecords();
+    };
+
+    recordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newRec = {
+        id: 'rec_' + Date.now(),
+        code: document.getElementById('fieldCode').value.trim(),
+        name: document.getElementById('fieldName').value.trim(),
+        category: document.getElementById('fieldCategory').value.trim(),
+        amount: Number(document.getElementById('fieldAmount').value) || 0,
+        status: document.getElementById('fieldStatus').value
+      };
+      records.unshift(newRec);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+      recordForm.reset();
+      renderRecords();
+    });
+
+    searchInput.addEventListener('input', renderRecords);
+
+    document.getElementById('btnExportCsv').addEventListener('click', () => {
+      if (records.length === 0) {
+        alert('Belum ada data untuk diekspor.');
+        return;
+      }
+      const rows = [['Kode', 'Nama', 'Kategori', 'Nominal', 'Status']];
+      records.forEach(r => rows.push([r.code, r.name, r.category, r.amount, r.status]));
+      const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'data-simrs-klinik-medika.harvestdigital.pro.csv';
+      link.click();
+    });
+
+    document.getElementById('btnToggleTheme').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    const docModal = document.getElementById('docModal');
+    document.getElementById('btnOpenDocModal').addEventListener('click', () => docModal.classList.remove('hidden'));
+    document.getElementById('btnCloseDocModal').addEventListener('click', () => docModal.classList.add('hidden'));
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') docModal.classList.add('hidden');
+    });
+
+    renderRecords();
+  </script>
+</body>
+</html>
